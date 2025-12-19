@@ -1,0 +1,6 @@
+
+ NX   module is not defined in ES module scope
+
+This file is being treated as an ES module because it has a '.js' file extension and '/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
+Pass --verbose to see the stacktrace.
+

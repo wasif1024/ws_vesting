@@ -1,0 +1,530 @@
+{
+  "version": "6.0",
+  "nxVersion": "22.3.2",
+  "pathMappings": {
+    "@project/anchor": [
+      "anchor/src"
+    ],
+    "@/*": [
+      "./src/*"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": ".gitignore",
+        "hash": "8596802233318982139"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "7843917089563445490"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "14506537074937664277"
+      },
+      {
+        "file": "README.md",
+        "hash": "591309085410496266"
+      },
+      {
+        "file": "components.json",
+        "hash": "1862382647467761246"
+      },
+      {
+        "file": "eslint.config.mjs",
+        "hash": "14398545069432105222"
+      },
+      {
+        "file": "next.config.ts",
+        "hash": "4711058719554916100"
+      },
+      {
+        "file": "nx.json",
+        "hash": "859360529707935099"
+      },
+      {
+        "file": "og-image.png",
+        "hash": "2997528928023457329"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "7367071261227447803"
+      },
+      {
+        "file": "package.json",
+        "hash": "674615912930911749"
+      },
+      {
+        "file": "postcss.config.mjs",
+        "hash": "12361389476924606194"
+      },
+      {
+        "file": "public/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/account/[address]/page.tsx",
+        "hash": "621827217217332890"
+      },
+      {
+        "file": "src/app/account/page.tsx",
+        "hash": "7319911010157564724"
+      },
+      {
+        "file": "src/app/favicon.ico",
+        "hash": "13871463210711627531"
+      },
+      {
+        "file": "src/app/globals.css",
+        "hash": "13210079627655529058"
+      },
+      {
+        "file": "src/app/layout.tsx",
+        "hash": "14764803997869147678"
+      },
+      {
+        "file": "src/app/page.tsx",
+        "hash": "7212187378333739273"
+      },
+      {
+        "file": "src/app/ws-vesting/page.tsx",
+        "hash": "6842545298659862074"
+      },
+      {
+        "file": "src/components/app-alert.tsx",
+        "hash": "16505398056997750509"
+      },
+      {
+        "file": "src/components/app-explorer-link.tsx",
+        "hash": "11502670641602519733"
+      },
+      {
+        "file": "src/components/app-footer.tsx",
+        "hash": "1379170520344414566"
+      },
+      {
+        "file": "src/components/app-header.tsx",
+        "hash": "489614378845789640"
+      },
+      {
+        "file": "src/components/app-hero.tsx",
+        "hash": "14860259251519381049"
+      },
+      {
+        "file": "src/components/app-layout.tsx",
+        "hash": "15335844606226634125"
+      },
+      {
+        "file": "src/components/app-modal.tsx",
+        "hash": "16862518116583801361"
+      },
+      {
+        "file": "src/components/app-providers.tsx",
+        "hash": "3367943716765357084"
+      },
+      {
+        "file": "src/components/cluster-dropdown.tsx",
+        "hash": "6518227932310192763"
+      },
+      {
+        "file": "src/components/react-query-provider.tsx",
+        "hash": "14595780707194896238"
+      },
+      {
+        "file": "src/components/solana/solana-mobile-wallet-adapter.ts",
+        "hash": "13386064238359120854"
+      },
+      {
+        "file": "src/components/solana/solana-provider.tsx",
+        "hash": "5507369994157815018"
+      },
+      {
+        "file": "src/components/solana/use-solana.tsx",
+        "hash": "3210752764832620891"
+      },
+      {
+        "file": "src/components/theme-provider.tsx",
+        "hash": "11558598588261840416"
+      },
+      {
+        "file": "src/components/theme-select.tsx",
+        "hash": "10717909600892731879"
+      },
+      {
+        "file": "src/components/toast-tx.tsx",
+        "hash": "12786787166357207715"
+      },
+      {
+        "file": "src/components/ui/alert.tsx",
+        "hash": "1528186973282510993"
+      },
+      {
+        "file": "src/components/ui/avatar.tsx",
+        "hash": "10654726700952654463"
+      },
+      {
+        "file": "src/components/ui/button.tsx",
+        "hash": "18208141229412968194"
+      },
+      {
+        "file": "src/components/ui/card.tsx",
+        "hash": "3592815199615301863"
+      },
+      {
+        "file": "src/components/ui/dialog.tsx",
+        "hash": "11302956607377058346"
+      },
+      {
+        "file": "src/components/ui/dropdown-menu.tsx",
+        "hash": "17376225069693774899"
+      },
+      {
+        "file": "src/components/ui/input.tsx",
+        "hash": "950845016175399729"
+      },
+      {
+        "file": "src/components/ui/label.tsx",
+        "hash": "6733238392630400736"
+      },
+      {
+        "file": "src/components/ui/sonner.tsx",
+        "hash": "3764367669103602715"
+      },
+      {
+        "file": "src/components/ui/spinner.tsx",
+        "hash": "5799335049208594731"
+      },
+      {
+        "file": "src/components/ui/table.tsx",
+        "hash": "10216467010379509257"
+      },
+      {
+        "file": "src/components/wallet-disconnect.tsx",
+        "hash": "14269923968189133722"
+      },
+      {
+        "file": "src/components/wallet-dropdown.tsx",
+        "hash": "2582348028572062849"
+      },
+      {
+        "file": "src/features/account/account-feature-detail.tsx",
+        "hash": "11118574740431828695"
+      },
+      {
+        "file": "src/features/account/account-feature-index.tsx",
+        "hash": "17310351403257169413"
+      },
+      {
+        "file": "src/features/account/data-access/get-token-accounts-by-owner.ts",
+        "hash": "14769079867356371787"
+      },
+      {
+        "file": "src/features/account/data-access/use-get-balance-query-key.ts",
+        "hash": "2249493162524961675"
+      },
+      {
+        "file": "src/features/account/data-access/use-get-balance-query.ts",
+        "hash": "5563817940484220258"
+      },
+      {
+        "file": "src/features/account/data-access/use-get-signatures-query-key.ts",
+        "hash": "15763449621035489193"
+      },
+      {
+        "file": "src/features/account/data-access/use-get-signatures-query.ts",
+        "hash": "16000074370268934652"
+      },
+      {
+        "file": "src/features/account/data-access/use-get-token-accounts-query.ts",
+        "hash": "4486079682371657615"
+      },
+      {
+        "file": "src/features/account/data-access/use-invalidate-get-balance-query.ts",
+        "hash": "1165268748315669937"
+      },
+      {
+        "file": "src/features/account/data-access/use-invalidate-get-signatures-query.ts",
+        "hash": "17972738970177354788"
+      },
+      {
+        "file": "src/features/account/data-access/use-request-airdrop-mutation.ts",
+        "hash": "7511959624968755330"
+      },
+      {
+        "file": "src/features/account/data-access/use-transfer-sol-mutation.ts",
+        "hash": "5718324865928646668"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-balance-check.tsx",
+        "hash": "1258960249021586667"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-balance-sol.tsx",
+        "hash": "11334576030307110381"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-balance.tsx",
+        "hash": "16959789209022427894"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-buttons.tsx",
+        "hash": "9923528810340723246"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-checker.tsx",
+        "hash": "14882443040138847305"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-modal-airdrop.tsx",
+        "hash": "1881309836149769983"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-modal-receive.tsx",
+        "hash": "16399265181886837048"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-modal-send.tsx",
+        "hash": "15367621960859349832"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-tokens.tsx",
+        "hash": "304648121563933750"
+      },
+      {
+        "file": "src/features/account/ui/account-ui-transactions.tsx",
+        "hash": "3384717937845217374"
+      },
+      {
+        "file": "src/features/cluster/data-access/use-cluster-version.ts",
+        "hash": "1282989039350463317"
+      },
+      {
+        "file": "src/features/cluster/ui/cluster-ui-checker.tsx",
+        "hash": "3235826289200537503"
+      },
+      {
+        "file": "src/features/dashboard/dashboard-feature.tsx",
+        "hash": "18061425819685302889"
+      },
+      {
+        "file": "src/features/ws-vesting/data-access/use-ws-vesting-accounts-invalidate.ts",
+        "hash": "11384553580997369846"
+      },
+      {
+        "file": "src/features/ws-vesting/data-access/use-ws-vesting-accounts-query-key.ts",
+        "hash": "15075851396587254091"
+      },
+      {
+        "file": "src/features/ws-vesting/data-access/use-ws-vesting-accounts-query.ts",
+        "hash": "11237259214447964610"
+      },
+      {
+        "file": "src/features/ws-vesting/data-access/use-ws-vesting-close-mutation.ts",
+        "hash": "13021842643439973283"
+      },
+      {
+        "file": "src/features/ws-vesting/data-access/use-ws-vesting-decrement-mutation.ts",
+        "hash": "1526823655809299603"
+      },
+      {
+        "file": "src/features/ws-vesting/data-access/use-ws-vesting-increment-mutation.ts",
+        "hash": "3245070920159396824"
+      },
+      {
+        "file": "src/features/ws-vesting/data-access/use-ws-vesting-initialize-mutation.ts",
+        "hash": "4835449462527648502"
+      },
+      {
+        "file": "src/features/ws-vesting/data-access/use-ws-vesting-program.ts",
+        "hash": "13603205374644940710"
+      },
+      {
+        "file": "src/features/ws-vesting/data-access/use-ws-vesting-set-mutation.ts",
+        "hash": "15578056996964045880"
+      },
+      {
+        "file": "src/features/ws-vesting/ui/ws-vesting-ui-button-close.tsx",
+        "hash": "2335836000601495647"
+      },
+      {
+        "file": "src/features/ws-vesting/ui/ws-vesting-ui-button-decrement.tsx",
+        "hash": "2284714727204432964"
+      },
+      {
+        "file": "src/features/ws-vesting/ui/ws-vesting-ui-button-increment.tsx",
+        "hash": "197579284928487584"
+      },
+      {
+        "file": "src/features/ws-vesting/ui/ws-vesting-ui-button-initialize.tsx",
+        "hash": "3053635830378138733"
+      },
+      {
+        "file": "src/features/ws-vesting/ui/ws-vesting-ui-button-set.tsx",
+        "hash": "13677154941462627503"
+      },
+      {
+        "file": "src/features/ws-vesting/ui/ws-vesting-ui-card.tsx",
+        "hash": "14404677473706735958"
+      },
+      {
+        "file": "src/features/ws-vesting/ui/ws-vesting-ui-list.tsx",
+        "hash": "2096093870158162878"
+      },
+      {
+        "file": "src/features/ws-vesting/ui/ws-vesting-ui-program-explorer-link.tsx",
+        "hash": "11307143311152419910"
+      },
+      {
+        "file": "src/features/ws-vesting/ui/ws-vesting-ui-program-guard.tsx",
+        "hash": "1526138664725088592"
+      },
+      {
+        "file": "src/features/ws-vesting/ws-vesting-feature.tsx",
+        "hash": "17181447381269161938"
+      },
+      {
+        "file": "src/lib/utils.ts",
+        "hash": "16742833743034575350"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "6635210226617601969"
+      }
+    ],
+    "projectFileMap": {
+      "anchor": [
+        {
+          "file": "anchor/.prettierignore",
+          "hash": "7843917089563445490"
+        },
+        {
+          "file": "anchor/Anchor.toml",
+          "hash": "8293521643501423813"
+        },
+        {
+          "file": "anchor/Cargo.lock",
+          "hash": "12423116026210383122"
+        },
+        {
+          "file": "anchor/Cargo.toml",
+          "hash": "18016256559089331344"
+        },
+        {
+          "file": "anchor/codama.js",
+          "hash": "15394867046561161390"
+        },
+        {
+          "file": "anchor/jest.config.cjs",
+          "hash": "12558825691107589794"
+        },
+        {
+          "file": "anchor/jest.config.js",
+          "hash": "12558825691107589794"
+        },
+        {
+          "file": "anchor/programs/ws-vesting/Cargo.toml",
+          "hash": "5658163053025090078"
+        },
+        {
+          "file": "anchor/programs/ws-vesting/Xargo.toml",
+          "hash": "12304191003573283670"
+        },
+        {
+          "file": "anchor/programs/ws-vesting/src/lib.rs",
+          "hash": "7582409204226459005"
+        },
+        {
+          "file": "anchor/project.json",
+          "hash": "16589451858661039958"
+        },
+        {
+          "file": "anchor/src/client/js/generated/accounts/index.ts",
+          "hash": "6174886228582545620"
+        },
+        {
+          "file": "anchor/src/client/js/generated/accounts/ws-vesting.ts",
+          "hash": "2383465944710826528"
+        },
+        {
+          "file": "anchor/src/client/js/generated/index.ts",
+          "hash": "15406258288446389087"
+        },
+        {
+          "file": "anchor/src/client/js/generated/instructions/close.ts",
+          "hash": "7462472919115962158"
+        },
+        {
+          "file": "anchor/src/client/js/generated/instructions/decrement.ts",
+          "hash": "4482211142307913770"
+        },
+        {
+          "file": "anchor/src/client/js/generated/instructions/increment.ts",
+          "hash": "1694675108291910199"
+        },
+        {
+          "file": "anchor/src/client/js/generated/instructions/index.ts",
+          "hash": "8463351985707525799"
+        },
+        {
+          "file": "anchor/src/client/js/generated/instructions/initialize.ts",
+          "hash": "12280431130321729479"
+        },
+        {
+          "file": "anchor/src/client/js/generated/instructions/set.ts",
+          "hash": "5513222179526070502"
+        },
+        {
+          "file": "anchor/src/client/js/generated/programs/index.ts",
+          "hash": "6174886228582545620"
+        },
+        {
+          "file": "anchor/src/client/js/generated/programs/ws-vesting.ts",
+          "hash": "12016913025368146696"
+        },
+        {
+          "file": "anchor/src/client/js/generated/shared/index.ts",
+          "hash": "16603827771220820755"
+        },
+        {
+          "file": "anchor/src/client/js/index.ts",
+          "hash": "4106639320810609343"
+        },
+        {
+          "file": "anchor/src/create-codama-config.js",
+          "hash": "5855486481777049665"
+        },
+        {
+          "file": "anchor/src/helpers/get-program-accounts-decoded.ts",
+          "hash": "15688412186903154027"
+        },
+        {
+          "file": "anchor/src/helpers/get-program-accounts.ts",
+          "hash": "18187284838956596969"
+        },
+        {
+          "file": "anchor/src/index.ts",
+          "hash": "9531213078196732666"
+        },
+        {
+          "file": "anchor/src/ws-vesting-exports.ts",
+          "hash": "12251479503733934587"
+        },
+        {
+          "file": "anchor/tests/bankrun.spec.ts",
+          "hash": "12784487109451637793"
+        },
+        {
+          "file": "anchor/tests/fixture/ws_vesting.so",
+          "hash": "11247039155070925318"
+        },
+        {
+          "file": "anchor/tsconfig.json",
+          "hash": "15297070781589357558"
+        }
+      ]
+    }
+  },
+  "externalNodesHash": "9151826487200544598"
+}
