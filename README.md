@@ -259,14 +259,31 @@ This runs the standard Anchor test suite using the Solana test validator.
 For faster, more isolated tests using bankrun:
 
 ```bash
-cd anchor
-npm test -- bankrun.spec.ts
+anchor test
 ```
 
-Bankrun tests are configured in `anchor/tests/bankrun.spec.ts` and provide:
-- Faster test execution
-- Better isolation
-- More realistic testing environment
+This runs the bankrun test suite configured in `anchor/tests/bankrun.spec.ts`. Bankrun tests provide:
+- **Faster test execution** - In-process validator, no separate process needed
+- **Better isolation** - Each test gets a fresh validator instance
+- **No port conflicts** - Runs entirely in-process
+- **More realistic testing environment** - Uses the same validator as production
+
+**Note:** You don't need to run `solana-test-validator` separately for bankrun tests - it creates an in-process validator automatically using `startAnchor` from `solana-bankrun`.
+
+#### Current Test Coverage
+
+The test suite includes:
+- ✅ **Create Vesting Account** - Tests creating a company vesting account with treasury token account
+- ⏳ Creating employee accounts (to be added)
+- ⏳ Claiming tokens (to be added)
+
+#### Test Configuration
+
+Bankrun tests are configured to:
+- Use `target/deploy` directory for compiled programs (empty string in `startAnchor` uses default location)
+- Automatically set up in-process validator with program loaded
+- Create test mints and accounts as needed
+- Use Jest as the test runner
 
 ## 🏃 Development
 
