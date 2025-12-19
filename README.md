@@ -270,20 +270,27 @@ This runs the bankrun test suite configured in `anchor/tests/bankrun.spec.ts`. B
 
 **Note:** You don't need to run `solana-test-validator` separately for bankrun tests - it creates an in-process validator automatically using `startAnchor` from `solana-bankrun`.
 
-#### Current Test Coverage
+#### Test Coverage ✅
 
-The test suite includes:
-- ✅ **Create Vesting Account** - Tests creating a company vesting account with treasury token account
-- ⏳ Creating employee accounts (to be added)
-- ⏳ Claiming tokens (to be added)
+The complete test suite (`anchor/tests/bankrun.spec.ts`) includes:
+
+1. **Create Vesting Account** - Creates a company vesting account with treasury token account
+2. **Fund Treasury Token Account** - Mints tokens to the treasury token account for vesting
+3. **Create Employee Account** - Sets up an employee vesting schedule with start_time, end_time, cliff_time, and total_amount
+4. **Claim Tokens** - Tests the complete claim flow including:
+   - Time advancement simulation
+   - Vested amount calculation
+   - Token transfer from treasury to employee
+   - Account updates
 
 #### Test Configuration
 
 Bankrun tests are configured to:
-- Use `target/deploy` directory for compiled programs (empty string in `startAnchor` uses default location)
+- Use `target/deploy` directory for compiled programs (empty string `""` in `startAnchor` uses default location)
 - Automatically set up in-process validator with program loaded
-- Create test mints and accounts as needed
-- Use Jest as the test runner
+- Create test mints and accounts as needed  
+- Use Jest as the test runner (configured via `jest.config.cjs`)
+- Support time manipulation for testing vesting schedules
 
 ## 🏃 Development
 
@@ -377,10 +384,10 @@ solana program show <PROGRAM_ID>
 
 **Current Program ID:**
 ```
-Count3AcZucFDPSFBAeHkQ6AvttieKUkyJ8HiQGhQwe
+HUi85Ba6ckWMY4RBvCfkXFxWhYN7kpNzU2CmBatn3Zks
 ```
 
-> **Note**: If you ran `npm run setup`, this will be different. Check `anchor/target/deploy/ws-vesting-keypair.json` for your program keypair.
+> **Note**: If you ran `npm run setup`, this will be different. Check `anchor/target/deploy/ws_vesting-keypair.json` for your program keypair.
 
 ## 🔐 Environment Variables
 
@@ -396,8 +403,8 @@ NEXT_PUBLIC_PROGRAM_ID=<your-program-id>
 ### 1. Company Setup
 ```
 1. Deploy/create token mint (if needed)
-2. Call create_vesting_account with company name
-3. Deposit tokens into treasury_token_account (done outside program via SPL Token)
+2. Call create_vesting_account with company name and mint address
+3. Fund the treasury token account by minting tokens to it (outside the program via SPL Token)
 ```
 
 ### 2. Employee Setup
@@ -415,8 +422,9 @@ NEXT_PUBLIC_PROGRAM_ID=<your-program-id>
 2. Program validates cliff time has passed
 3. Program calculates vested amount using linear vesting formula
 4. Program calculates claimable amount (vested - withdrawn)
-5. Tokens are transferred from treasury to employee's token account
-6. total_withdrawn is updated
+5. Employee's associated token account is created if needed
+6. Tokens are transferred from treasury to employee's token account
+7. total_withdrawn is updated
 ```
 
 ## 💡 Vesting Logic
@@ -521,9 +529,23 @@ solana program close <PROGRAM_ID>
 
 ## 🔗 Links
 
-- Program ID: `Count3AcZucFDPSFBAeHkQ6AvttieKUkyJ8HiQGhQwe`
+- Program ID: `HUi85Ba6ckWMY4RBvCfkXFxWhYN7kpNzU2CmBatn3Zks` (localnet)
 - [Solana Explorer](https://explorer.solana.com/?cluster=devnet)
 - [Anchor Book](https://www.anchor-lang.com/book/)
+- [Solana Developer Bootcamp](https://github.com/solana-developers/developer-bootcamp-2024/tree/main/project-8-token-vesting)
+
+## ✅ Test Status
+
+All tests are passing:
+- ✅ Create Vesting Account
+- ✅ Fund Treasury Token Account  
+- ✅ Create Employee Account
+- ✅ Claim Tokens
+
+Run tests with:
+```bash
+anchor test
+```
 
 ---
 
