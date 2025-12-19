@@ -1,0 +1,11 @@
+/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/debug/deps/tinyvec-6177cbfab2886d85.d: /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/lib.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/array.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/array/generated_impl.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/arrayvec.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/arrayvec_drain.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/slicevec.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/tinyvec.rs
+
+/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/debug/deps/libtinyvec-6177cbfab2886d85.rmeta: /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/lib.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/array.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/array/generated_impl.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/arrayvec.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/arrayvec_drain.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/slicevec.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/tinyvec.rs
+
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/lib.rs:
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/array.rs:
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/array/generated_impl.rs:
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/arrayvec.rs:
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/arrayvec_drain.rs:
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/slicevec.rs:
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyvec-1.9.0/src/tinyvec.rs:
