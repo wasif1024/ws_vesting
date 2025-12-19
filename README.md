@@ -1,513 +1,323 @@
-# ws_vesting
+# WS_Vesting - Token Vesting Smart Contract on Solana
 
-A full-stack Solana application for token vesting with a Next.js frontend and Anchor program backend. This project enables companies to create vesting accounts and manage employee token vesting schedules with linear vesting, cliff periods, and secure token transfers.
+A Solana smart contract built with Anchor framework that implements a token vesting system for companies to manage employee token allocations with flexible vesting schedules, including cliff periods.
 
-## 🚀 Features
+## Features
 
-### Smart Contract (Anchor Program)
-- **Create Vesting Account**: Companies can create vesting accounts with treasury token accounts
-- **Create Employee Account**: Set up individual employee vesting schedules with customizable parameters
-- **Claim Tokens**: Employees can claim their vested tokens based on linear vesting schedules
-- **Linear Vesting**: Tokens vest proportionally over time from start to end date
-- **Cliff Period**: Enforce a minimum time before any tokens can be claimed
-- **Secure Transfers**: Uses SPL Token with checked transfers for security
+- **Create Vesting Accounts**: Companies can create vesting accounts for managing employee token distributions
+- **Employee Vesting**: Set up individual vesting schedules for employees with customizable:
+  - Start time
+  - End time (vesting period)
+  - Total vesting amount
+  - Cliff period (time before any tokens can be claimed)
+- **Token Claiming**: Employees can claim their vested tokens after the cliff period
+- **Linear Vesting**: Tokens vest linearly over time from start to end
+- **Program Derived Addresses (PDAs)**: Secure account management using PDAs
 
-### Frontend (Next.js)
-- Modern React application with TypeScript
-- Tailwind CSS and Shadcn UI components
-- [Gill](https://gill.site/) Solana SDK integration
-- Shadcn [Wallet UI](https://registry.wallet-ui.dev) components
-- [Codama](https://github.com/codama-idl/codama) for JS SDK generation
-- Interactive UI for managing vesting accounts
-
-## 📋 Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js** (v18 or higher)
 - **Rust** (latest stable version)
-- **Solana CLI** (v1.18+)
-- **Anchor** (v0.30.0)
+- **Solana CLI** (v2.0.0 or later)
+- **Anchor Framework** (v0.30.0 or later)
+- **Node.js** (v16 or later) and **npm** or **yarn**
 - **Git**
 
-### Installing Prerequisites
+## Installation
 
-#### Install Solana CLI
+1. Clone the repository:
 ```bash
-sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+git clone <repository-url>
+cd ws_vesting1
 ```
 
-#### Install Anchor
-```bash
-cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
-avm install latest
-avm use latest
-```
-
-## 🛠️ Installation
-
-### Clone the Repository
-
-```bash
-git clone <your-repo-url>
-cd ws_vesting
-```
-
-### Install Dependencies
-
+2. Install dependencies:
 ```bash
 npm install
+# or
+yarn install
 ```
 
-### Setup Program ID
-
-This command will:
-- Create a new program keypair
-- Save it to Anchor config
-- Update the program ID in the Rust code
-- Generate the TypeScript SDK
-
+3. Build the program:
 ```bash
-npm run setup
-```
-
-## 🏗️ Project Structure
-
-```
-ws_vesting/
-├── anchor/                      # Anchor program
-│   ├── programs/
-│   │   └── ws-vesting/
-│   │       └── src/
-│   │           └── lib.rs      # Main program logic
-│   ├── tests/
-│   │   ├── ws-vesting.test.ts  # Integration tests
-│   │   └── bankrun.spec.ts     # Bankrun tests
-│   ├── src/                     # Client SDK
-│   │   ├── client/             # Generated client code
-│   │   └── ws-vesting-exports.ts
-│   └── Anchor.toml             # Anchor configuration
-├── src/                         # Next.js frontend
-│   ├── app/                    # Next.js app directory
-│   ├── components/             # React components
-│   └── features/
-│       └── ws-vesting/         # Vesting feature components
-└── package.json
-```
-
-## 📝 Program Instructions
-
-### 1. `create_vesting_account`
-
-Creates a vesting account for a company with a treasury token account.
-
-**Parameters:**
-- `company_name: String` - Unique company identifier (max 50 characters, used as seed for PDAs)
-
-**Accounts:**
-- `signer` - Company owner (payer, mutable, signer)
-- `vesting_account` - PDA derived from company name (initialized)
-- `mint` - Token mint address
-- `treasury_token_account` - PDA treasury token account (initialized)
-- `system_program` - System program
-- `token_program` - Token program
-
-**What it does:**
-- Creates a PDA for the vesting account using the company name as a seed
-- Creates a treasury token account (also a PDA) to hold tokens for vesting
-- Stores company information including owner, mint, and treasury token account
-
-### 2. `create_employee_account`
-
-Creates an employee vesting schedule with customizable parameters.
-
-**Parameters:**
-- `start_time: i64` - Unix timestamp when vesting starts
-- `end_time: i64` - Unix timestamp when vesting ends
-- `cliff_time: i64` - Unix timestamp for cliff period (no tokens can be claimed before this)
-- `total_amount: u64` - Total tokens to vest
-
-**Accounts:**
-- `owner` - Vesting account owner (mutable, signer)
-- `beneficiary` - Employee wallet address (system account)
-- `vesting_account` - Parent vesting account (must match owner)
-- `employee_account` - PDA employee account (initialized)
-- `system_program` - System program
-
-**What it does:**
-- Creates a PDA for the employee vesting account
-- Links the employee to the company's vesting account
-- Sets up the vesting schedule parameters
-
-### 3. `claim_tokens`
-
-Allows employees to claim their vested tokens. Implements linear vesting with cliff period enforcement.
-
-**Vesting Formula:**
-```
-vested_amount = (total_amount × time_elapsed) / total_vesting_period
-claimable = vested_amount - total_withdrawn
-```
-
-Where:
-- `time_elapsed` = current_time - start_time
-- `total_vesting_period` = end_time - start_time
-
-**Parameters:**
-- `company_name: String` - Company identifier (used for PDA derivation)
-
-**Accounts:**
-- `beneficiary` - Employee claiming (mutable, signer)
-- `employee_account` - Employee vesting account (mutable)
-- `vesting_account` - Company vesting account (mutable)
-- `treasury_token_account` - Treasury holding tokens (mutable)
-- `mint` - Token mint
-- `employee_token_account` - Employee's token account (initialized if needed)
-- `system_program` - System program
-- `token_program` - Token program
-- `associated_token_program` - Associated token program
-
-**What it does:**
-- Validates that cliff time has passed
-- Calculates vested amount based on linear vesting
-- Transfers claimable tokens from treasury to employee's token account
-- Updates the total_withdrawn amount
-- Uses `transfer_checked` for secure token transfers
-
-## 📦 Account Structures
-
-### `VestingAccount`
-
-Stores information about a company's vesting setup.
-
-**Fields:**
-- `owner: Pubkey` - The owner of the vesting account
-- `mint: Pubkey` - The token mint address
-- `treasury_token_account: Pubkey` - The treasury token account PDA address
-- `company_name: String` - The company name (max 50 characters)
-- `treasury_bump: u8` - The bump seed for the treasury token account PDA
-- `bump: u8` - The bump seed for the vesting account PDA
-
-### `EmployeeAccount`
-
-Stores information about an employee's vesting schedule.
-
-**Fields:**
-- `beneficiary: Pubkey` - The employee receiving the vested tokens
-- `start_time: i64` - Unix timestamp when vesting starts
-- `end_time: i64` - Unix timestamp when vesting ends
-- `cliff_time: i64` - Unix timestamp for the cliff period (no claims allowed before this)
-- `vesting_account: Pubkey` - Reference to the parent vesting account
-- `total_amount: u64` - Total amount of tokens to be vested
-- `total_withdrawn: u64` - Amount of tokens already withdrawn
-- `bump: u8` - The bump seed for the employee account PDA
-
-## 🔐 PDAs (Program Derived Addresses)
-
-### Vesting Account PDA
-
-**Seeds:**
-- `[company_name.as_bytes()]`
-
-**Derives:** The vesting account address
-
-### Treasury Token Account PDA
-
-**Seeds:**
-- `[b"vesting_treasury", company_name.as_bytes()]`
-
-**Derives:** The treasury token account address (owned by the program)
-
-### Employee Account PDA
-
-**Seeds:**
-- `[b"employee_vesting", beneficiary.key().as_ref(), vesting_account.key().as_ref()]`
-
-**Derives:** The employee vesting account address
-
-## ⚠️ Error Codes
-
-The program defines the following error codes:
-
-- `ClaimNotAvailable` - Attempted to claim tokens before the cliff time
-- `InvalidVestingTime` - Invalid vesting schedule (e.g., zero vesting duration, overflow in calculations)
-- `NoAmountToClaim` - No tokens available to claim (already withdrawn all vested tokens or none vested yet)
-
-## 🔒 Security Considerations
-
-- **Ownership Validation**: The vesting account owner must match the signer for employee account creation
-- **Unique Company Names**: Company names are used as seeds for PDAs, so they must be unique per company
-- **Program-Owned Treasury**: Treasury token accounts are owned by the program (via PDA) to secure vested tokens
-- **Beneficiary Authorization**: Only the beneficiary can sign and claim their own vested tokens
-- **Checked Transfers**: The program uses `transfer_checked` to ensure proper token amount and decimals handling
-- **Overflow Protection**: Linear vesting calculations use checked arithmetic (`checked_mul`, `checked_div`) to prevent overflow
-- **Cliff Enforcement**: Claims are validated against cliff time before processing
-- **Time Validation**: Vesting schedules are validated to ensure logical time ordering (cliff_time, start_time, end_time)
-
-## 🧪 Testing
-
-### Run Anchor Tests
-
-```bash
-npm run anchor-test
-```
-
-This runs the standard Anchor test suite using the Solana test validator.
-
-### Run Bankrun Tests
-
-For faster, more isolated tests using bankrun:
-
-```bash
-cd anchor
-npm test -- bankrun.spec.ts
-```
-
-Bankrun tests are configured in `anchor/tests/bankrun.spec.ts` and provide:
-- Faster test execution
-- Better isolation
-- More realistic testing environment
-
-## 🏃 Development
-
-### Build the Program
-
-```bash
-npm run anchor-build
-```
-
-### Start Local Validator
-
-Start a local Solana validator with the program deployed:
-
-```bash
-npm run anchor-localnet
+anchor build
 ```
 
 This will:
-- Start a local Solana validator
-- Deploy your program
-- Keep it running for testing
+- Compile the Rust program
+- Generate the IDL (Interface Definition Language) file
+- Create the program binary in `target/deploy/`
 
-### Start Frontend Development Server
+## Testing
 
-```bash
-npm run dev
-```
+This project uses **Bankrun** for fast, in-memory testing. Bankrun allows you to run Solana program tests without deploying to a network, making testing much faster and more efficient.
 
-The app will be available at `http://localhost:3000`
+### Running Tests
 
-### Generate TypeScript SDK
-
-After building the program, generate the TypeScript SDK:
+To run all tests using Bankrun:
 
 ```bash
-npm run codama:js
+npm run test:bankrun
+# or
+yarn test:bankrun
 ```
 
-## 🚢 Deployment
+This will execute all tests in `tests/bankrun.spec.ts` using the Bankrun testing framework.
 
-### Deploy to Devnet
+### Test Coverage
 
-1. **Set Solana CLI to Devnet:**
+The test suite includes:
+
+1. **Create Vesting Account**: Tests the creation of a company vesting account
+2. **Fund Treasury**: Tests funding the treasury token account
+3. **Create Employee Vesting**: Tests setting up an employee's vesting schedule
+4. **Claim Tokens**: Tests the token claiming functionality after the cliff period
+
+### Why Bankrun?
+
+Bankrun is an in-memory Solana runtime that:
+- Runs tests in milliseconds instead of seconds
+- Doesn't require a local validator
+- Provides deterministic testing environment
+- Supports all Solana runtime features needed for program testing
+
+## Project Structure
+
+```
+ws_vesting1/
+├── programs/
+│   └── ws_vesting1/
+│       ├── src/
+│       │   └── lib.rs          # Main program logic
+│       └── Cargo.toml          # Rust dependencies
+├── tests/
+│   └── bankrun.spec.ts         # Bankrun test suite
+├── target/
+│   ├── deploy/                 # Compiled program binary
+│   ├── idl/                    # Generated IDL files
+│   └── types/                  # TypeScript type definitions
+├── Anchor.toml                 # Anchor configuration
+├── Cargo.toml                  # Rust workspace configuration
+├── package.json                # Node.js dependencies
+└── tsconfig.json               # TypeScript configuration
+```
+
+## Program Instructions
+
+### 1. `create_vesting_account`
+
+Creates a new vesting account for a company.
+
+**Parameters:**
+- `company_name`: String identifier for the company
+
+**Accounts:**
+- `signer`: The account creating the vesting account (company owner)
+- `vesting_account`: PDA for the vesting account (seeds: `[company_name]`)
+- `mint`: Token mint address
+- `treasury_token_account`: PDA for the treasury (seeds: `["vesting_treasury", company_name]`)
+
+### 2. `create_employee_vesting`
+
+Creates a vesting schedule for an employee.
+
+**Parameters:**
+- `start_time`: Unix timestamp when vesting starts
+- `end_time`: Unix timestamp when vesting ends
+- `total_amount`: Total tokens to be vested
+- `cliff_time`: Unix timestamp when claiming becomes available
+
+**Accounts:**
+- `owner`: Company owner (must match vesting account owner)
+- `beneficiary`: Employee's wallet address
+- `vesting_account`: The company's vesting account
+- `employee_account`: PDA for employee vesting (seeds: `["employee_vesting", beneficiary, vesting_account]`)
+
+### 3. `claim_tokens`
+
+Allows an employee to claim their vested tokens.
+
+**Parameters:**
+- `company_name`: Company name identifier
+
+**Logic:**
+- Checks if current time is past the cliff period
+- Calculates vested amount based on linear vesting schedule
+- Transfers claimable tokens to employee's token account
+- Updates the total withdrawn amount
+
+**Accounts:**
+- `beneficiary`: Employee signing the transaction
+- `employee_account`: Employee's vesting account
+- `vesting_account`: Company's vesting account
+- `treasury_token_account`: Treasury holding the tokens
+- `employee_token_account`: Employee's token account (created if needed)
+- `mint`: Token mint address
+
+## Account Structures
+
+### VestingAccount
+
+Stores company vesting information:
+
+```rust
+pub struct VestingAccount {
+    pub owner: Pubkey,
+    pub mint: Pubkey,
+    pub treasury_token_account: Pubkey,
+    pub company_name: String,
+    pub treasury_bump: u8,
+    pub bump: u8,
+}
+```
+
+### EmployeeAccount
+
+Stores individual employee vesting schedule:
+
+```rust
+pub struct EmployeeAccount {
+    pub beneficiary: Pubkey,
+    pub start_time: i64,
+    pub end_time: i64,
+    pub total_amount: i64,
+    pub total_withdrawn: i64,
+    pub cliff_time: i64,
+    pub vesting_account: Pubkey,
+    pub bump: u8,
+}
+```
+
+## Error Codes
+
+- `ClaimNotAvailableYet`: Attempted to claim tokens before the cliff period
+- `NothingToClaim`: No tokens available to claim (already claimed or not vested yet)
+
+## Building and Deploying
+
+### Build
+
 ```bash
-solana config set --url devnet
+anchor build
 ```
 
-2. **Airdrop SOL (if needed):**
+### Deploy to Localnet
+
+1. Start a local validator:
 ```bash
-solana airdrop 2
+solana-test-validator
 ```
 
-3. **Deploy the Program:**
+2. Deploy the program:
 ```bash
-npm run anchor deploy -- --provider.cluster devnet
+anchor deploy
 ```
 
-Or from the anchor directory:
+### Deploy to Devnet/Mainnet
+
+1. Configure Solana CLI for the desired network:
 ```bash
-cd anchor
-anchor deploy --provider.cluster devnet
+solana config set --url devnet  # or mainnet-beta
 ```
 
-### Deploy to Mainnet
+2. Ensure your wallet has SOL for deployment fees
 
-⚠️ **Warning**: Deploying to mainnet costs real SOL. Ensure thorough testing first.
-
-1. **Set Solana CLI to Mainnet:**
+3. Deploy:
 ```bash
-solana config set --url mainnet-beta
+anchor deploy
 ```
 
-2. **Ensure you have enough SOL:**
-   - ~2-3 SOL for deployment
-   - Additional SOL for rent and transactions
+## Usage Example
 
-3. **Deploy the Program:**
+```typescript
+// Create a vesting account for a company
+await program.methods
+  .createVestingAccount("Company")
+  .accounts({
+    signer: companyOwner.publicKey,
+    mint: tokenMint,
+    tokenProgram: TOKEN_PROGRAM_ID,
+  })
+  .rpc();
+
+// Create employee vesting schedule
+await program.methods
+  .createEmployeeVesting(
+    new BN(startTime),
+    new BN(endTime),
+    new BN(totalAmount),
+    new BN(cliffTime)
+  )
+  .accounts({
+    beneficiary: employee.publicKey,
+    vestingAccount: vestingAccountKey,
+  })
+  .rpc();
+
+// Employee claims vested tokens
+await program.methods
+  .claimTokens("Company")
+  .accounts({
+    tokenProgram: TOKEN_PROGRAM_ID,
+  })
+  .rpc();
+```
+
+## Development
+
+### Running Tests
+
+All tests use Bankrun for fast execution:
+
 ```bash
-npm run anchor deploy -- --provider.cluster mainnet-beta
+# Run all tests
+npm run test:bankrun
+
+# Run specific test file
+npm run test
 ```
 
-### Verify Deployment
+### Code Style
 
-After deployment, verify your program:
+The project uses:
+- **Rust**: Standard Rust formatting (`cargo fmt`)
+- **TypeScript**: Prettier for code formatting
 
+Format code:
 ```bash
-solana program show <PROGRAM_ID>
+npm run lint:fix
 ```
 
-## 📊 Program ID
+## Technologies Used
 
-**Current Program ID:**
+- **Anchor Framework**: Solana program development framework
+- **Rust**: Programming language for the Solana program
+- **TypeScript**: Test suite language
+- **Bankrun**: Fast in-memory Solana runtime for testing
+- **Solana Program Library (SPL)**: Token program integration
+
+## Program ID
+
 ```
-Count3AcZucFDPSFBAeHkQ6AvttieKUkyJ8HiQGhQwe
-```
-
-> **Note**: If you ran `npm run setup`, this will be different. Check `anchor/target/deploy/ws-vesting-keypair.json` for your program keypair.
-
-## 🔐 Environment Variables
-
-For the frontend, you may want to configure:
-
-```env
-NEXT_PUBLIC_SOLANA_NETWORK=devnet  # or mainnet-beta
-NEXT_PUBLIC_PROGRAM_ID=<your-program-id>
+FW1JafDHPQvpnGntR25eUMob9eSQWShTtFVDsomYxogF
 ```
 
-## 🎯 Usage Workflow
-
-### 1. Company Setup
-```
-1. Deploy/create token mint (if needed)
-2. Call create_vesting_account with company name
-3. Deposit tokens into treasury_token_account (done outside program via SPL Token)
-```
-
-### 2. Employee Setup
-```
-1. Owner calls create_employee_account with:
-   - Employee's wallet address (beneficiary)
-   - Vesting schedule (start_time, end_time, cliff_time)
-   - Total amount of tokens to vest
-2. Employee account PDA is created and linked to vesting account
-```
-
-### 3. Employee Claims
-```
-1. Employee calls claim_tokens with company_name
-2. Program validates cliff time has passed
-3. Program calculates vested amount using linear vesting formula
-4. Program calculates claimable amount (vested - withdrawn)
-5. Tokens are transferred from treasury to employee's token account
-6. total_withdrawn is updated
-```
-
-## 💡 Vesting Logic
-
-The program implements **linear vesting**:
-
-1. **Cliff Period**: No tokens can be claimed before the `cliff_time` - this enforces a minimum lockup period
-2. **Vesting Period**: Tokens vest linearly from `start_time` to `end_time` - proportional to time elapsed
-3. **Calculation**: The vested amount is calculated as:
-   ```
-   vested = (total_amount × elapsed_time) / total_vesting_period
-   ```
-4. **Claimable**: Only the difference between vested amount and already withdrawn tokens can be claimed
-5. **Full Vesting**: After `end_time`, all tokens are considered fully vested
-
-### Example:
-- Total tokens: 1000
-- Start time: 1000 (Unix timestamp)
-- End time: 2000 (Unix timestamp)
-- Vesting period: 1000 seconds
-- Current time: 1500
-- Time elapsed: 500 seconds
-- Vested: (1000 × 500) / 1000 = 500 tokens (50% vested)
-
-## 🔧 Dependencies
-
-### Anchor Program Dependencies
-
-The program uses:
-- `anchor-lang` (v0.30.0) - Anchor framework core library (with `init-if-needed` feature)
-- `anchor-spl` (v0.30.0) - Anchor SPL token interface helpers, including:
-  - Token interface for cross-program invocations
-  - Associated token account functionality
-  - Transfer checked operations
-
-### Frontend Dependencies
-
-Key dependencies include:
-- `next` - Next.js framework
-- `react` - React library
-- `@coral-xyz/anchor` - Anchor TypeScript client
-- `@solana/web3.js` - Solana Web3.js library
-- `gill` - Gill Solana SDK
-- `@wallet-ui/react` - Wallet UI components
-- `codama` - IDL to TypeScript SDK generator
-
-## 🐛 Troubleshooting
-
-### Build Errors
-
-**Error: Program ID mismatch**
-```bash
-# Regenerate program ID
-npm run setup
-```
-
-**Error: Anchor version mismatch**
-```bash
-# Update Anchor
-avm install latest
-avm use latest
-```
-
-### Deployment Errors
-
-**Insufficient SOL:**
-```bash
-# Check balance
-solana balance
-
-# Airdrop (devnet only)
-solana airdrop 2
-```
-
-**Program already deployed:**
-```bash
-# Close existing program first
-solana program close <PROGRAM_ID>
-```
-
-## 📚 Additional Resources
-
-- [Anchor Documentation](https://www.anchor-lang.com/)
-- [Anchor Book](https://www.anchor-lang.com/book/)
-- [Solana Documentation](https://docs.solana.com/)
-- [SPL Token Documentation](https://spl.solana.com/token)
-- [Gill SDK](https://gill.site/)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Solana Explorer](https://explorer.solana.com/)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
-
-## 📄 License
+## License
 
 [Add your license here]
 
-## 🔗 Links
+## Contributing
 
-- Program ID: `Count3AcZucFDPSFBAeHkQ6AvttieKUkyJ8HiQGhQwe`
-- [Solana Explorer](https://explorer.solana.com/?cluster=devnet)
-- [Anchor Book](https://www.anchor-lang.com/book/)
+Contributions are welcome! Please feel free to submit a Pull Request.
 
----
+## Acknowledgments
 
-**Built with ❤️ using Anchor, Solana, and Next.js**
+- Built with [Anchor Framework](https://www.anchor-lang.com/)
+- Testing powered by [Bankrun](https://github.com/anza-xyz/solana-bankrun)
+- Solana blockchain platform
+
+## Support
+
+For issues, questions, or contributions, please open an issue on the repository.
+
