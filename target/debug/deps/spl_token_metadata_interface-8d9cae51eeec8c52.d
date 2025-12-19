@@ -1,0 +1,8 @@
+/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/debug/deps/spl_token_metadata_interface-8d9cae51eeec8c52.d: /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/lib.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/error.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/instruction.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/state.rs
+
+/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/debug/deps/libspl_token_metadata_interface-8d9cae51eeec8c52.rmeta: /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/lib.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/error.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/instruction.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/state.rs
+
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/lib.rs:
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/error.rs:
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/instruction.rs:
+/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-metadata-interface-0.3.5/src/state.rs:
