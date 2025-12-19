@@ -1,9 +1,0 @@
-/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/debug/deps/spl_type_length_value-f15edba2246af53a.d: /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/lib.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/error.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/length.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/state.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/variable_len_pack.rs
-
-/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/debug/deps/libspl_type_length_value-f15edba2246af53a.rmeta: /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/lib.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/error.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/length.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/state.rs /Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/variable_len_pack.rs
-
-/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/lib.rs:
-/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/error.rs:
-/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/length.rs:
-/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/state.rs:
-/Users/air/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-type-length-value-0.4.6/src/variable_len_pack.rs:

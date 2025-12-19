@@ -1,1 +1,0 @@
-/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/sbpf-solana-solana/release/ws_vesting.so: /Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/programs/ws-vesting/src/lib.rs

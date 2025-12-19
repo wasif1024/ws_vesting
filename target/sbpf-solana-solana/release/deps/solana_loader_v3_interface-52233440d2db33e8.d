@@ -1,9 +1,0 @@
-/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/sbpf-solana-solana/release/deps/libsolana_loader_v3_interface-52233440d2db33e8.rmeta: /Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/lib.rs /Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/instruction.rs /Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/state.rs
-
-/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/sbpf-solana-solana/release/deps/libsolana_loader_v3_interface-52233440d2db33e8.rlib: /Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/lib.rs /Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/instruction.rs /Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/state.rs
-
-/Users/air/Documents/programmingwork/blockchain/solana/bootcamp/ws_vesting/anchor/target/sbpf-solana-solana/release/deps/solana_loader_v3_interface-52233440d2db33e8.d: /Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/lib.rs /Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/instruction.rs /Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/state.rs
-
-/Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/lib.rs:
-/Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/instruction.rs:
-/Users/air/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-loader-v3-interface-3.0.0/src/state.rs:
